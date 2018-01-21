@@ -7,7 +7,6 @@ const bot = new Discord.Client({
   token: process.env.TOKEN,
   autorun: true
 });
-const ingame = [];
 
 bot.on('ready', (event) => {
   console.log(`Conected as ${bot.username}(${bot.id})`);
@@ -24,27 +23,10 @@ bot.on('message', (user, userID, channelID, message, event) => {
 });
 bot.on('presence', (user, userID, status, game, event) => {
   console.log(event.d.timestamp, user, userID, status, game);
-  if (game) {
+  if ((userID === '149583537237000193') && (game)) {
     bot.sendMessage({
-      to: '151233317742575616',
+      to: userID,
       message: `Hey everyone look at ${user} playing that terrible ${game.name} game`
     });
   }
 });
-/**
- * adds userid and game name to array
- * @param {array} array
- * @param {object} object
- * @param {string} object.userID
- * @param {string} object.gamename
- * @return {array}
- */
-function addToArray(array, object) {
-  return array.push(object);
-}
-function isInArray() {
-
-}
-function removeFromArray() {
-
-}
